@@ -1,2 +1,2 @@
 console.log("I LOVE GIT");
-"bh"
+console.log("I LOVE GIT");
