@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <title>Item Lister</title>
+</head>
+<body>
+  <header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div class="container">
+      <h1 id="header-title">Item Lister</h1>
+    </div>
+  </header>
+  <div class="container">
+   <div id="main" class="card card-body">
+    <h2 class="title">Add Items</h2>
+    <form class="form-inline mb-3">
+      <input type="text" class="form-control mr-2">
+      <input type="submit" class="btn btn-dark" value="Submit">
+    </form>
+    <h2 class="title">Items</h2>
+    <ul id="items" class="list-group">
+      <li class="list-group-item">Item 1</li>
+      <li class="list-group-item">Item 2</li>
+      <li class="list-group-item">Item 3</li>
+      <li class="list-group-item">Item 4</li>
+    </ul>
+ 
+   </div>
+  </div>
+<script>
+    //parentelement
+    const listitem = document.querySelector('#items');
+    listitem.parentElement.style.backgroundColor = 'RGB(244,244,244)';
+// first element child
+// listitem.firstElementChild.textContent= 'Hello there';
+// listitem.lastchild.textContent= "Hello!!!"
+//lastelemnet child
+listitem.lastElementChild.style.fontWeight= 'bold';
+//firstchild
+const head = document.querySelector('.container')
+// head.firstChild.textContent= 'Helllllllooooo';
+// console.log(head.firstChild)
+//lastchild
+// console.log(listitem.lastChild)
+// //next sibling
+// console.log(head.nextSibling)
+//nextelement sibling
+const li=document.querySelector('.list-group-item')
+// li.nextElementSibling.style.backgroundColor ="RGB(244,244,244)"
+// console.log(li.nextElementSibling)
+//previos sibling
+// listitem.previousSibling.textContent ="Heloo!"
+//previous element sibling
+listitem.previousElementSibling.style.color= "grey"
+// create element
+//creat a div
+const newDiv = document.createElement('div');
+// add class
+newDiv.className ='Heyo';
+// add id
+newDiv.id ='Heyo1';
+// set attribute
+newDiv.setAttribute('title', 'hello BOYS');
+//create text node
+const newDivText = document.createTextNode('HEllo');
+//append child
+newDiv.appendChild(newDivText);
+const container = document.querySelector('header .container')
+const h1 = document.querySelector('header h1')
+container.insertBefore(newDiv, h1)
+//
+const newli = document.createElement('li');
+const node = document.createTextNode('Hello');
+newli.appendChild(node);
+const cname = document.querySelector('.list-group');
+
+const child = document.querySelector('.list-group-item')
+cname.insertBefore(newli, child)
+
+
+
+
+
+</script>
+</body>
+</html>
