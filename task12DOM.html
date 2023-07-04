@@ -96,17 +96,25 @@
             </form>
 
         </div>
+        <h3>Registered users</h3>
+        <ul id='user-list'></ul>
+
     </div>
     <script>
         var form = document.getElementById('addForm');
-        
+
         var users = JSON.parse(localStorage.getItem('users')) || [];
         // Form submit event
         form.addEventListener('submit', saveItem);
         // Save item
+        displayuser();
         function saveItem(e) {
             e.preventDefault();
-           
+            let name = document.getElementById('fullname').value;
+            let email = document.getElementById('email').value;
+            let date = document.getElementById('Date').value;
+            let contact = document.getElementById('Contact').value;
+            let password = document.getElementById('password').value;
             let newObj = {
                 name: document.getElementById('fullname').value,
                 email: document.getElementById('email').value,
@@ -119,27 +127,47 @@
             console.log(myObj_serialized);
             localStorage.setItem('User Details ', myObj_serialized);
 
-                document.getElementById('fullname').value= '';
-                document.getElementById('email').value= '';
-                document.getElementById('Date').value= '';
-                document.getElementById('Contact').value= '';
-                document.getElementById('password').value= '';
+            document.getElementById('fullname').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('Date').value = '';
+            document.getElementById('Contact').value = '';
+            document.getElementById('password').value = '';
+            displayuser();
+        }
+        function displayuser() {
+            let userlist = document.getElementById('user-list');
+            userlist.textContent = '';
+            for (let i = 0; i < users.length; i++) {
+                let user = users[i];
+                let listItem = document.createElement('li');
+                var fullnameText = document.createElement('span');
+                fullnameText.textContent = " " + user.name;
+                var emailText = document.createElement('span');
+                emailText.textContent = " " + user.email;
+                var dateText = document.createElement('span');
+                dateText.textContent = " " + user.date;
+                var contactText = document.createElement('span');
+                contactText.textContent = " " + user.contact;
+                var passwordText = document.createElement('span');
+                passwordText.textContent = " " + user.password;
+
+                listItem.appendChild(fullnameText);
+                listItem.appendChild(emailText);
+                listItem.appendChild(dateText);
+                listItem.appendChild(contactText);
+                listItem.appendChild(passwordText);
+                
+                // var deleteBtn = document.createElement('button');
+                // deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+                // deleteBtn.appendChild(document.createTextNode('X'));
+                // listItem.appendChild(deleteBtn);
+                userlist.appendChild(listItem);
 
 
-            // var name = document.getElementById('fullname').value;
-            // localStorage.setItem('Name', name);
-            // var newEmail = document.getElementById('email').value;
-            // localStorage.setItem('email', newEmail);
-            // var newDate = document.getElementById('Date').value;
-            // localStorage.setItem('Date', newDate);
-            // var newContact = document.getElementById('Contact').value;
-            // localStorage.setItem('Contact', newContact);
-            // var newPassword = document.getElementById('password').value;
-            // localStorage.setItem('Password', newPassword);
-
+            }
 
         }
-
+        displayuser();
     </script>
 </body>
 
