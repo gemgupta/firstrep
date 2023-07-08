@@ -103,11 +103,11 @@
     <script>
         var form = document.getElementById('addForm');
 
-        var users = JSON.parse(localStorage.getItem('users')) || [];
+      //  var users = JSON.parse(localStorage.getItem('users')) || [];
         // Form submit event
         form.addEventListener('submit', saveItem);
         // Save item
-        displayuser();
+       // displayuser();
         function saveItem(e) {
             e.preventDefault();
             let name = document.getElementById('fullname').value;
@@ -116,58 +116,83 @@
             let contact = document.getElementById('Contact').value;
             let password = document.getElementById('password').value;
             let newObj = {
-                name: document.getElementById('fullname').value,
-                email: document.getElementById('email').value,
-                date: document.getElementById('Date').value,
-                contact: document.getElementById('Contact').value,
-                password: document.getElementById('password').value
+                name: name,
+                email: email,
+                date: date,
+                contact: contact,
+                password: password
             };
-            users.push(newObj);
-            let myObj_serialized = JSON.stringify(users);
+            //users.push(newObj);
+            let myObj_serialized = JSON.stringify(newObj);
+            let email_serialized = JSON.stringify(email);
             console.log(myObj_serialized);
-            localStorage.setItem('User Details ', myObj_serialized);
+            localStorage.setItem(email_serialized, myObj_serialized);
 
-            document.getElementById('fullname').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('Date').value = '';
-            document.getElementById('Contact').value = '';
-            document.getElementById('password').value = '';
-            displayuser();
-        }
-        function displayuser() {
-            let userlist = document.getElementById('user-list');
-            userlist.textContent = '';
-            for (let i = 0; i < users.length; i++) {
-                let user = users[i];
+            
+           // displayuser();
+           let userlist = document.getElementById('user-list');
+           let user = localStorage.getItem(email_serialized);
+          
                 let listItem = document.createElement('li');
                 var fullnameText = document.createElement('span');
-                fullnameText.textContent = " " + user.name;
+                fullnameText.textContent = " " + newObj.name;
                 var emailText = document.createElement('span');
-                emailText.textContent = " " + user.email;
+                emailText.textContent = " " + newObj.email;
                 var dateText = document.createElement('span');
-                dateText.textContent = " " + user.date;
+                dateText.textContent = " " + newObj.date;
                 var contactText = document.createElement('span');
-                contactText.textContent = " " + user.contact;
+                contactText.textContent = " " + newObj.contact;
                 var passwordText = document.createElement('span');
-                passwordText.textContent = " " + user.password;
+                passwordText.textContent = " " + newObj.password;
 
                 listItem.appendChild(fullnameText);
                 listItem.appendChild(emailText);
                 listItem.appendChild(dateText);
                 listItem.appendChild(contactText);
                 listItem.appendChild(passwordText);
+                userlist.appendChild(listItem);
+
+            document.getElementById('fullname').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('Date').value = '';
+            document.getElementById('Contact').value = '';
+            document.getElementById('password').value = '';
+        }
+        // function displayuser() {
+        //     let userlist = document.getElementById('user-list');
+        //     userlist.textContent = '';
+        //     for (let i = 0; i < users.length; i++) {
+        //        let user = users[i];
+        //      let user = localStorage.getItem('email_serialized');
+        //         let listItem = document.createElement('li');
+        //         var fullnameText = document.createElement('span');
+        //         fullnameText.textContent = " " + user.name;
+        //         var emailText = document.createElement('span');
+        //         emailText.textContent = " " + user.email;
+        //         var dateText = document.createElement('span');
+        //         dateText.textContent = " " + user.date;
+        //         var contactText = document.createElement('span');
+        //         contactText.textContent = " " + user.contact;
+        //         var passwordText = document.createElement('span');
+        //         passwordText.textContent = " " + user.password;
+
+        //         listItem.appendChild(fullnameText);
+        //         listItem.appendChild(emailText);
+        //         listItem.appendChild(dateText);
+        //         listItem.appendChild(contactText);
+        //         listItem.appendChild(passwordText);
                 
-                // var deleteBtn = document.createElement('button');
+        //         // var deleteBtn = document.createElement('button');
                 // deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
                 // deleteBtn.appendChild(document.createTextNode('X'));
                 // listItem.appendChild(deleteBtn);
-                userlist.appendChild(listItem);
+                //userlist.appendChild(listItem);
 
 
-            }
+            //}
 
-        }
-        displayuser();
+       // }
+       // displayuser();
     </script>
 </body>
 
